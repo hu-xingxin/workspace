@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../js/fetch.min.js"></script>
+	</head>
+	<body>
+		<div id="hero"></div>
+		<script>
+			var url = 'http://127.0.0.1:8848/javaScript/basic/vue/json/json.text';
+			fetch(url).then(function(response){
+				// console.log(response);
+				response.json().then(function(data){
+					var data = JSON.stringify(data);
+					console.log(data);
+				})
+				
+			}).catch(function(err){
+				console.log(err);
+			})
+		</script>
+	</body>
+</html>

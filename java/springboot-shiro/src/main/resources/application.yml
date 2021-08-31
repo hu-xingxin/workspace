@@ -1,0 +1,55 @@
+#连接数据库
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/mybatis?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=UTC
+      username: root
+      password: 123456
+      initialSize: 3
+      minIdle: 3
+      maxActive: 30
+      maxWait: 15000
+      validationQuery: SELECT 'x'
+      #监控的配置
+      stat-view-servlet:
+        login-username: root
+        login-password: 123456
+        allow:
+        deny:
+        url-pattern: /druid/*
+        enabled: true
+#mybatis的配置
+mybatis:
+  mapper-locations:
+    - classpath:com/springboot/demo3/mapping/*Mapper.xml
+  configuration:
+    log-impl:  org.apache.ibatis.logging.stdout.StdOutImpl
+
+#shiro的配置
+shiro:
+  hash-algorithm-name: md5
+  hash-iterations: 2
+  login-url: /menu
+  target-bean-name: shiroFilter
+  target-filter-lifecycle: true
+  unauthorized-url: /menu
+#  anon-urls:
+#    #index.html
+#    - /
+#    - /login
+#    - /index
+#    - /bootstrap/**
+#    - /bootstrap-fileupload/**
+#    - /img/**
+#    - /doc.html
+#    - /swagger-resources/**
+#    - /webjars/bycdao-ui/**
+#  authc-urls:
+#    - /**
+  # 连接池最大连接数（使用负值表示没有限制）
+
+
+
+
+

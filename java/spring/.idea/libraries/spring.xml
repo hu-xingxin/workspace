@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="spring">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../lib/spring" />
+      <root url="file://$PROJECT_DIR$/../lib/quartz" />
+      <root url="file://$PROJECT_DIR$/../lib/spring_mybatis" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/../lib/quartz" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../lib/spring" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../lib/spring_mybatis" recursive="false" />
+  </library>
+</component>

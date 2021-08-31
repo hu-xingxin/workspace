@@ -1,0 +1,10 @@
+
+#openOffice配置
+jodconverter:
+  local:
+    enabled: true
+    max-tasks-per-process: 10
+    port-numbers: 9100
+    #home:安装地址
+#    office-home: /opt/openoffice4
+#    working-dir: /opt/openoffice4/workingdir

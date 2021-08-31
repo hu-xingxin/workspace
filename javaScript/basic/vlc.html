@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body >
+		<div>
+			<object class="vlc"  id='vlc'  type='application/x-vlc-plugin'  events='True' width="720" height="540" classid='clsid:9BE31822-FDAD-461B-AD51-BE1D1C159921'>
+					  <param name='mrl' value='' />
+					  <!-- <param name='volume' value='50' /> -->
+					 <param name='autoplay' value='true' />
+					  <param name='loop' value='true' />
+					  <param name='fullscreen' value='true' />
+			</object>
+		</div>
+		<input type="button" value="点击" onclick="test()" />
+	
+		<script src="jquery.min.js"></script>
+		
+		<script>
+			window.scrollBy(0,0)
+			function test(){
+				var vlc=document.getElementById('vlc');
+						vlc.playlist.clear();
+						vlc.playlist.add('rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov');
+						vlc.playlist.play();
+				
+			}
+		</script>
+	</body>
+</html>

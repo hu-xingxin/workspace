@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+	<th:block th:include="include :: header('点击按钮加载表格')" />
+</head>
+<body class="gray-bg">
+<div class="container-div">
+	<div class="row">
+		<object class="vlc"  id='vlc'  type='application/x-vlc-plugin'   width="720" height="540" classid='clsid:9BE31822-FDAD-461B-AD51-BE1D1C159921'>
+			<param name='mrl' value='rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov' />
+			<param name='volume' value='50' />
+			<param name='autoplay' value='true' />
+			<param name='loop' value='true' />
+			<param name='fullscreen' value='true' />
+		</object>
+		<input type="button" value="点击" onclick="playVlc()" />
+	</div>
+</div>
+<div th:include="include :: footer"></div>
+<script>
+	function playVlc(){
+		// var vlc=document.getElementById('vlc');
+		// vlc.playlist.clear();
+		// vlc.playlist.add('rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov');
+		// vlc.playlist.play();
+		// window.scrollBy(0,0)
+	}
+</script>
+</body>
+</html>

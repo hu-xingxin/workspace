@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 头文件 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+	    http://www.springframework.org/schema/context/spring-context.xsd
+	    http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx.xsd
+        ">
+
+
+<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+        <property name="url" value="jdbc:mysql://localhost:3306/mybatis"></property>
+        <property name="username" value="root"></property>
+        <property name="password" value="123456"></property>
+    </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"></property>
+        <property name="configLocation" value="classpath:hibernate/hibernate.cfg.xml"></property>
+    </bean>
+
+    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="add*" propagation="REQUIRED"/>
+            <tx:method name="save*" propagation="REQUIRED"/>
+            <tx:method name="insert*" propagation="REQUIRED"/>
+            <tx:method name="delete*" propagation="REQUIRED"/>
+            <tx:method name="update*" propagation="REQUIRED"/>
+            <tx:method name="select*" propagation="REQUIRED"/>
+            <tx:method name="*" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config>
+        <aop:pointcut id="pc1" expression="execution(* com.spring.hibernate.service.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pc1"/>
+    </aop:config>
+
+    <bean id="userDao" class="com.spring.hibernate.dao.UserDao">
+        <property name="hibernateTemplate" ref="hibernateTemplate"/>
+    </bean>
+
+    <bean id="userService" class="com.spring.hibernate.service.UserService">
+        <property name="userDao" ref="userDao"/>
+    </bean>
+</beans>

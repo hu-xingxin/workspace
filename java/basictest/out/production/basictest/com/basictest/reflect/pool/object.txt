@@ -1,0 +1,2 @@
+date=java.utile.Date
+jFrame=javax.swing.JFrame

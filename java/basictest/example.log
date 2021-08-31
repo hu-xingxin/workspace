@@ -1,0 +1,40 @@
+INFO main com.tools.logger.LoggerTest - Fri Jul 30 16:55:12 CST 2021
+INFO main com.tools.logger.LoggerTest - Fri Jul 30 16:55:45 CST 2021
+INFO main com.tools.logger.LoggerTest - Fri Jul 30 16:57:00 CST 2021
+ 2021-07-30 16:57:00INFO main com.tools.logger.LoggerTest - Fri Jul 30 16:57:05 CST 2021
+ 2021-07-30 16:57:05INFO main com.tools.logger.LoggerTest - Fri Jul 30 16:57:05 CST 2021
+ 2021-07-30 16:57:05INFO main com.tools.logger.LoggerTest - 1
+ 2021-07-30 16:57:15INFO main com.tools.logger.LoggerTest - 2
+ 2021-07-30 16:57:15INFO main com.tools.logger.LoggerTest 2021-07-30 16:57:31 - 1
+INFO main com.tools.logger.LoggerTest 2021-07-30 16:57:31 - 2
+INFO main com.tools.logger.LoggerTest 2021-07-30 16:57:50 - 1
+INFO main com.tools.logger.LoggerTest 2021-07-30 16:57:50 - 2
+INFO main com.tools.logger.LoggerTest  - 1
+INFO main com.tools.logger.LoggerTest  - 2
+INFO main com.tools.logger.LoggerTest - 1
+INFO main com.tools.logger.LoggerTest - 2
+INFO main com.tools.logger.LoggerTest - 1
+INFO main com.tools.logger.LoggerTest - 2
+ERROR main com.tools.logger.LoggerTest - 1
+INFO main com.tools.logger.LoggerTest - 2
+INFO main com.tools.logger.LoggerTest - 2
+DEBUG main com.tools.logger.LoggerTest - 1
+INFO main com.tools.logger.LoggerTest - 2
+DEBUG main com.tools.logger.LoggerTest - 1
+INFO main com.tools.logger.LoggerTest - 2
+DEBUG main com.tools.logger.LoggerTest - 1
+INFO main com.tools.logger.LoggerTest - 2
+DEBUG main com.tools.logger.LoggerTest - 1
+INFO main com.tools.logger.LoggerTest - 2
+DEBUG main com.tools.logger.LoggerTest - 1
+INFO main com.tools.logger.LoggerTest - 2
+DEBUG main com.tools.logger.LoggerTest - 1
+INFO main com.tools.logger.LoggerTest - 2
+DEBUG main com.tools.logger.LoggerTest - 1
+INFO main com.tools.logger.LoggerTest - 2
+DEBUG main com.tools.logger.LoggerTest - 1
+INFO main com.tools.logger.LoggerTest - 2
+DEBUG main com.tools.logger.LoggerTest - 1
+INFO main com.tools.logger.LoggerTest - 2
+DEBUG main com.tools.logger.LoggerTest - 1
+INFO main com.tools.logger.LoggerTest - 2

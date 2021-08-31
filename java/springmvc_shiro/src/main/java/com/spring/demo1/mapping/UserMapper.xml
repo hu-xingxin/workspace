@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.demo1.mapper.UserMapper">
+    
+    <resultMap id="UserResult" type="com.spring.demo1.domain.User">
+        <id property="userId" column="user_id"></id>
+        <result property="userName" column="user_name"></result>
+        <result property="password" column="password"></result>
+        <result property="salt" column="salt"></result>
+    </resultMap>
+
+    <resultMap id="RoleResult" type="com.spring.demo1.domain.Role">
+        <id property="roleId" column="role_id"></id>
+        <result property="roleName" column="role_name"></result>
+        <result property="roleKey" column="role_key"></result>
+    </resultMap>
+
+    <resultMap id="PermissionResult" type="com.spring.demo1.domain.Permission">
+        <id property="perId" column="per_id"></id>
+        <result property="perName" column="per_name"></result>
+        <result property="perKey" column="per_key"></result>
+    </resultMap>
+
+
+    <select id="queryUserList" parameterType="com.spring.demo1.domain.User" resultMap="UserResult">
+        select * from sys_user
+        <where>
+            <if test="userName!=null and userName!=''">
+                and user_name = #{userName}
+            </if>
+            <if test="password!=null and password!=''">
+                and password = #{password}
+            </if>
+        </where>
+    </select>
+
+    <select id="queryUserByListIds" parameterType="list" resultMap="UserResult">
+        select * from sys_user
+        <where>
+        user_id in
+            <foreach item="item" collection="list" separator="," open="(" close=")" index="">
+                #{item.userId}
+            </foreach>
+        </where>
+    </select>
+
+    <select id="queryUserByArrayIds" resultMap="UserResult">
+        select * from sys_user
+        <where>
+            user_id in
+            <foreach item="item" collection="array" separator="," open="(" close=")" index="index">
+                #{item}
+            </foreach>
+        </where>
+    </select>
+
+    <select id="queryUserByMapIds" resultMap="UserResult">
+        select * from sys_user
+        <where>
+            user_id in
+            <foreach item="item" collection="ids" separator="," open="(" close=")" index="index">
+                #{item}
+            </foreach>
+        </where>
+    </select>
+
+    <insert id="insertUser" parameterType="com.spring.demo1.domain.User">
+        insert into sys_user( user_id, user_name, password, salt)
+       			values(#{userId},#{userName},#{password},#{salt})
+    </insert>
+
+    <update id="updateUser" parameterType="com.spring.demo1.domain.User">
+        update sys_user
+        <set>
+            <if test="userName!=null and userName!=''">
+                user_name = #{userName}
+            </if>
+        </set>
+        where user_id = #{userId}
+    </update>
+
+    <delete id="deleteUserById" parameterType="java.lang.Integer">
+        delete from sys_user where user_id = #{userId}
+    </delete>
+
+    <select id="queryRoleByUserId" resultType="String">
+        SELECT r.role_key
+        FROM sys_role r
+        LEFT JOIN sys_user_role ur ON r.role_id = ur.role_id
+        WHERE ur.user_id = #{userId}
+    </select>
+
+    <select id="queryPermissionByUserId" resultType="String">
+        SELECT p.per_key
+        FROM sys_permission p
+        LEFT JOIN sys_user_permission up ON p.per_id = up.per_id
+        WHERE up.user_id = #{userId}
+    </select>
+
+
+</mapper>

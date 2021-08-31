@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 导入xml文件约束 -->
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.spring.hibernate.pojo">
+    <class name="SysUser" table="sys_user">
+        <id name="userId" column="user_id" type="java.lang.Integer">
+            <generator class="native"></generator>
+        </id>
+        <property name="deptId" column="dept_id" type="java.lang.Integer"></property>
+        <property name="loginName" column="login_name" type="java.lang.String"></property>
+        <property name="userName" column="user_name" type="java.lang.String"></property>
+    </class>
+
+</hibernate-mapping>

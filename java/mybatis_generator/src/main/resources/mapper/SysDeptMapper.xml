@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mybatis.mapper.SysDeptMapper" >
+  <resultMap id="BaseResultMap" type="com.mybatis.domain.SysDept" >
+    <id column="dept_id" property="dept_id" jdbcType="BIGINT" />
+    <result column="parent_id" property="parent_id" jdbcType="BIGINT" />
+    <result column="ancestors" property="ancestors" jdbcType="VARCHAR" />
+    <result column="dept_name" property="dept_name" jdbcType="VARCHAR" />
+    <result column="order_num" property="order_num" jdbcType="INTEGER" />
+    <result column="leader" property="leader" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="del_flag" property="del_flag" jdbcType="CHAR" />
+    <result column="create_by" property="create_by" jdbcType="VARCHAR" />
+    <result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="update_by" jdbcType="VARCHAR" />
+    <result column="update_time" property="update_time" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    dept_id, parent_id, ancestors, dept_name, order_num, leader, phone, email, status, 
+    del_flag, create_by, create_time, update_by, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mybatis.domain.SysDeptExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from sys_dept
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_dept
+    where dept_id = #{dept_id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_dept
+    where dept_id = #{dept_id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mybatis.domain.SysDeptExample" >
+    delete from sys_dept
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mybatis.domain.SysDept" >
+    insert into sys_dept (dept_id, parent_id, ancestors, 
+      dept_name, order_num, leader, 
+      phone, email, status, 
+      del_flag, create_by, create_time, 
+      update_by, update_time)
+    values (#{dept_id,jdbcType=BIGINT}, #{parent_id,jdbcType=BIGINT}, #{ancestors,jdbcType=VARCHAR}, 
+      #{dept_name,jdbcType=VARCHAR}, #{order_num,jdbcType=INTEGER}, #{leader,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, 
+      #{del_flag,jdbcType=CHAR}, #{create_by,jdbcType=VARCHAR}, #{create_time,jdbcType=TIMESTAMP}, 
+      #{update_by,jdbcType=VARCHAR}, #{update_time,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mybatis.domain.SysDept" >
+    insert into sys_dept
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dept_id != null" >
+        dept_id,
+      </if>
+      <if test="parent_id != null" >
+        parent_id,
+      </if>
+      <if test="ancestors != null" >
+        ancestors,
+      </if>
+      <if test="dept_name != null" >
+        dept_name,
+      </if>
+      <if test="order_num != null" >
+        order_num,
+      </if>
+      <if test="leader != null" >
+        leader,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="del_flag != null" >
+        del_flag,
+      </if>
+      <if test="create_by != null" >
+        create_by,
+      </if>
+      <if test="create_time != null" >
+        create_time,
+      </if>
+      <if test="update_by != null" >
+        update_by,
+      </if>
+      <if test="update_time != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dept_id != null" >
+        #{dept_id,jdbcType=BIGINT},
+      </if>
+      <if test="parent_id != null" >
+        #{parent_id,jdbcType=BIGINT},
+      </if>
+      <if test="ancestors != null" >
+        #{ancestors,jdbcType=VARCHAR},
+      </if>
+      <if test="dept_name != null" >
+        #{dept_name,jdbcType=VARCHAR},
+      </if>
+      <if test="order_num != null" >
+        #{order_num,jdbcType=INTEGER},
+      </if>
+      <if test="leader != null" >
+        #{leader,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="del_flag != null" >
+        #{del_flag,jdbcType=CHAR},
+      </if>
+      <if test="create_by != null" >
+        #{create_by,jdbcType=VARCHAR},
+      </if>
+      <if test="create_time != null" >
+        #{create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="update_by != null" >
+        #{update_by,jdbcType=VARCHAR},
+      </if>
+      <if test="update_time != null" >
+        #{update_time,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mybatis.domain.SysDeptExample" resultType="java.lang.Integer" >
+    select count(*) from sys_dept
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sys_dept
+    <set >
+      <if test="record.dept_id != null" >
+        dept_id = #{record.dept_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.parent_id != null" >
+        parent_id = #{record.parent_id,jdbcType=BIGINT},
+      </if>
+      <if test="record.ancestors != null" >
+        ancestors = #{record.ancestors,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dept_name != null" >
+        dept_name = #{record.dept_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.order_num != null" >
+        order_num = #{record.order_num,jdbcType=INTEGER},
+      </if>
+      <if test="record.leader != null" >
+        leader = #{record.leader,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=CHAR},
+      </if>
+      <if test="record.del_flag != null" >
+        del_flag = #{record.del_flag,jdbcType=CHAR},
+      </if>
+      <if test="record.create_by != null" >
+        create_by = #{record.create_by,jdbcType=VARCHAR},
+      </if>
+      <if test="record.create_time != null" >
+        create_time = #{record.create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.update_by != null" >
+        update_by = #{record.update_by,jdbcType=VARCHAR},
+      </if>
+      <if test="record.update_time != null" >
+        update_time = #{record.update_time,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sys_dept
+    set dept_id = #{record.dept_id,jdbcType=BIGINT},
+      parent_id = #{record.parent_id,jdbcType=BIGINT},
+      ancestors = #{record.ancestors,jdbcType=VARCHAR},
+      dept_name = #{record.dept_name,jdbcType=VARCHAR},
+      order_num = #{record.order_num,jdbcType=INTEGER},
+      leader = #{record.leader,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=CHAR},
+      del_flag = #{record.del_flag,jdbcType=CHAR},
+      create_by = #{record.create_by,jdbcType=VARCHAR},
+      create_time = #{record.create_time,jdbcType=TIMESTAMP},
+      update_by = #{record.update_by,jdbcType=VARCHAR},
+      update_time = #{record.update_time,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mybatis.domain.SysDept" >
+    update sys_dept
+    <set >
+      <if test="parent_id != null" >
+        parent_id = #{parent_id,jdbcType=BIGINT},
+      </if>
+      <if test="ancestors != null" >
+        ancestors = #{ancestors,jdbcType=VARCHAR},
+      </if>
+      <if test="dept_name != null" >
+        dept_name = #{dept_name,jdbcType=VARCHAR},
+      </if>
+      <if test="order_num != null" >
+        order_num = #{order_num,jdbcType=INTEGER},
+      </if>
+      <if test="leader != null" >
+        leader = #{leader,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="del_flag != null" >
+        del_flag = #{del_flag,jdbcType=CHAR},
+      </if>
+      <if test="create_by != null" >
+        create_by = #{create_by,jdbcType=VARCHAR},
+      </if>
+      <if test="create_time != null" >
+        create_time = #{create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="update_by != null" >
+        update_by = #{update_by,jdbcType=VARCHAR},
+      </if>
+      <if test="update_time != null" >
+        update_time = #{update_time,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where dept_id = #{dept_id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mybatis.domain.SysDept" >
+    update sys_dept
+    set parent_id = #{parent_id,jdbcType=BIGINT},
+      ancestors = #{ancestors,jdbcType=VARCHAR},
+      dept_name = #{dept_name,jdbcType=VARCHAR},
+      order_num = #{order_num,jdbcType=INTEGER},
+      leader = #{leader,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR},
+      del_flag = #{del_flag,jdbcType=CHAR},
+      create_by = #{create_by,jdbcType=VARCHAR},
+      create_time = #{create_time,jdbcType=TIMESTAMP},
+      update_by = #{update_by,jdbcType=VARCHAR},
+      update_time = #{update_time,jdbcType=TIMESTAMP}
+    where dept_id = #{dept_id,jdbcType=BIGINT}
+  </update>
+</mapper>

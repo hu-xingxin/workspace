@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <title>ajax</title>
+  </head>
+  <body>
+    <iframe id="iframe" style="border: 0px solid red" src="/getTime"></iframe>
+  <script>
+    function loadTime() {
+      var iframe = document.getElementById("iframe");
+      iframe.src = iframe.src;
+    }
+
+    setInterval(loadTime,1000);
+  </script>
+  </body>
+</html>

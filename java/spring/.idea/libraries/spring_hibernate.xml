@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="spring_hibernate">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../lib/spring_hibernate" />
+      <root url="file://$PROJECT_DIR$/../lib/spring_mybatis" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/../lib/spring_hibernate" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../lib/spring_mybatis" recursive="false" />
+  </library>
+</component>

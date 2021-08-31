@@ -1,0 +1,7 @@
+Servlet
+ * service
+ * get post方法
+ * request response
+ * 表单参数的接收 parameter
+ * 页面跳转和重定向 forward redirect
+ * 会话管理 cooke session

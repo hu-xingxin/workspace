@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../js/vue.min.js"></script>
+		<script src="../js/axios.min.js"></script>
+	</head>
+	<body>
+		<div id="hero">
+		    
+		    <table align="center" >
+		        <tr class="firstLine">
+		            <td>name</td>
+		            <td>hp</td>
+		        </tr>
+		          
+		        <tr v-for="hero in heros">
+		            <td>{{hero.name}}</td>
+		            <td>{{hero.hp}}</td>
+		        </tr>
+		          
+		    </table>
+		  
+		</div>
+		<script>
+			var url = 'http://127.0.0.1:8848/javaScript/basic/vue/json/json.text';
+			new Vue({
+				el: '#hero',
+				data: {
+					heros: []
+				},
+				mounted:function(){
+					var self = this;
+					axios.get(url).then(function(response){
+						var data = response.data;
+						self.heros = data;
+					});
+				}
+			});
+		</script>
+	</body>
+</html>

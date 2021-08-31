@@ -1,0 +1,24 @@
+<component name="libraryTable">
+  <library name="ssm">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../lib/ssm/connpool" />
+      <root url="file://$PROJECT_DIR$/../lib/ssm/fileupload" />
+      <root url="file://$PROJECT_DIR$/../lib/ssm/jackson" />
+      <root url="file://$PROJECT_DIR$/../lib/ssm/log" />
+      <root url="file://$PROJECT_DIR$/../lib/ssm/mybtais" />
+      <root url="file://$PROJECT_DIR$/../lib/ssm/mysql" />
+      <root url="file://$PROJECT_DIR$/../lib/ssm/pagehelper" />
+      <root url="file://$PROJECT_DIR$/../lib/ssm/spring" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/../lib/ssm/connpool" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../lib/ssm/fileupload" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../lib/ssm/jackson" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../lib/ssm/log" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../lib/ssm/mybtais" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../lib/ssm/mysql" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../lib/ssm/pagehelper" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../lib/ssm/spring" recursive="false" />
+  </library>
+</component>

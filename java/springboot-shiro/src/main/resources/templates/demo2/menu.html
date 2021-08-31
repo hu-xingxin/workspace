@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<html lang="zh" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>menu</title>
+    <script src="../../static/bootstrap/js/jquery/2.0.0/jquery.min.js" th:src="@{/bootstrap/js/jquery/2.0.0/jquery.min.js}"></script>
+    <script src="../../static/bootstrap/js/bootstrap/3.3.6/bootstrap.min.js" th:src="@{/bootstrap/js/bootstrap/3.3.6/bootstrap.min.js}"></script>
+    <link href="../../static/bootstrap/css/bootstrap/3.3.6/bootstrap.css" th:href="@{/bootstrap/css/bootstrap/3.3.6/bootstrap.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="row" style="text-align: center">
+        <div class="col-xs-4" style="margin-left: 30%;margin-top: 10%">
+            <div class="list-group">
+                <p style="font-size:25px;color: #2aabd2">welcome to <span style="font-weight: bold">springBoot-shiro</span></p>
+                <p th:text="${#request.getServerPort()}"></p>
+                <a id="addOrder" class="list-group-item active">toOrder 添加订单</a>
+                <a id="upload" class="list-group-item list-group-item-success">upload 文件上传</a>
+                <a id="uploadAjax" class="list-group-item list-group-item-success">uploadAjax 文件上传</a>
+                <a id="login" class="list-group-item list-group-item-info">login 登录</a>
+                <a id="loginAjax" class="list-group-item list-group-item-info">loginAjax 登录</a>
+                <a id="logout" class="list-group-item list-group-item-warning">logout 退出</a>
+                <a id="index" class="list-group-item list-group-item-danger">index 主页</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var ctx = '[[${#request.getContextPath()}]]';
+    $('#addOrder').click(function () {
+        window.location = ctx + '/addOrder';
+    });
+
+    $('#upload').click(function () {
+        window.location = ctx + '/upload';
+    });
+
+    $('#uploadAjax').click(function () {
+        $.ajax({
+            url: ctx+'/upload',
+            type:'get',
+            dataType:'json',
+            success: function (data) {
+                console.log(data);
+            }
+        })
+    });
+
+    $('#login').click(function () {
+        window.location = ctx + '/login';
+    });
+
+    $('#loginAjax').click(function () {
+        $.ajax({
+            url: ctx+'/login',
+            type:'post',
+            dataType:'json',
+            data:{
+                userName:'shiro',
+                password:'ls123456.'
+            },
+            success: function (data) {
+                console.log(data);
+            }
+        })
+    });
+
+    $('#logout').click(function () {
+        window.location = ctx + '/logout';
+    });
+
+    $('#index').click(function () {
+        window.location = ctx + '/index';
+    });
+</script>
+</body>
+</html>

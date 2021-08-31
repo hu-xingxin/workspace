@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>order</title>
+    <script th:src="@{/bootstrap/js/jquery/2.0.0/jquery.min.js}"></script>
+    <script th:src="@{/bootstrap/js/bootstrap/3.3.6/bootstrap.min.js}"></script>
+    <link th:href="@{/bootstrap/css/bootstrap/3.3.6/bootstrap.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-6">
+            <form class="form-horizontal" method="post" th:action="@{/editOrder}">
+                <h3 align="center">Order Form</h3>
+                <div class="form-group">
+                    <span class="col-sm-2 control-label">姓名:</span>
+                    <div class="col-sm-10">
+                        <input type="text" name="name" class="form-control" th:value="${order.userName}" disabled="disabled">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <span class="col-sm-2 control-label">地址:</span>
+                    <div class="col-sm-10">
+                        <input type="text" name="address" class="form-control" th:value="${order.address}" disabled="disabled">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <span class="col-sm-2 control-label">城市:</span>
+                    <div class="col-sm-10">
+                        <select name="cities" class="form-control" disabled="disabled">
+                            <th:if test="${order.cities == 'yangZhou'}">
+                                <option value="yangZhou">扬州</option>
+                            </th:if>
+                            <th:if test="${order.cities == 'nanJing'}">
+                                <option value="">南京</option>
+                            </th:if>
+                            <th:if test="${order.cities =='suZhou'}">
+                                <option value="">苏州</option>
+                            </th:if>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <span class="col-sm-2 control-label">快递:</span>
+                    <div class="col-sm-10">
+                        <label th:if = "${order.expresses eq 'yunDa'}"  class="radio-inline">
+                            <input type="radio" name="expresses" value="yunDa" disabled="disabled" checked>韵达
+                        </label>
+                        <label th:if = "${order.expresses ne 'yunDa'}"  class="radio-inline">
+                            <input type="radio" name="expresses" value="yunDa" disabled="disabled">韵达
+                        </label>
+                        <label th:if = "${order.expresses eq 'shunFeng'}"  class="radio-inline">
+                            <input type="radio" name="expresses" value="yunDa" disabled="disabled" checked>顺丰
+                        </label>
+                        <label th:if = "${order.expresses ne 'shunFeng'}"  class="radio-inline">
+                            <input type="radio" name="expresses" value="yunDa" disabled="disabled">顺丰
+                        </label>
+                        <label th:if = "${order.expresses eq 'yunTong'}"  class="radio-inline">
+                            <input type="radio" name="expresses" value="yunDa" disabled="disabled" checked>圆通
+                        </label>
+                        <label th:if = "${order.expresses ne 'yunTong'}"  class="radio-inline">
+                            <input type="radio" name="expresses" value="yunDa" disabled="disabled">圆通
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <span class="col-sm-2 control-label">额外服务:</span>
+                    <div class="col-sm-10" id="otherService">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="otherService" value="insurance" disabled="disabled" id="insurance">运费险
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="otherService" value="backOff" disabled="disabled" id="backOff">七天无理由退货
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="otherService" value="guarantee" disabled="disabled" id="guarantee">半年保修卡
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <span class="col-sm-2 control-label">备注:</span>
+                    <div class="col-sm-10">
+                        <textarea name="remark" class="form-control" style="height: 150px" disabled="disabled" th:text="${order.remark}"></textarea>
+                    </div>
+                </div>
+                <div>
+                    <div align="center">
+                        <a class="btn btn-success" type="button" href="${pageContext.request.contextPath}/toOrder">返回</a>
+                        <button class="btn btn-success " type="button" id="reload">刷新</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var data = '[[${data}]]';
+    var jsonData = JSON.parse(data.replace(/&quot;/g,'"'));
+    console.log(jsonData);
+</script>
+</body>
+</html>

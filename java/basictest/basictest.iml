@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/resources" type="java-resource" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="mysql-connector-java-5.1.20-bin" level="project" />
+    <orderEntry type="library" exported="" name="apt-mirror-api-0.1" level="project" />
+    <orderEntry type="library" exported="" name="swing" level="project" />
+    <orderEntry type="library" exported="" name="log4j-1.2.17" level="project" />
+    <orderEntry type="library" exported="" name="junit-4.9" level="project" />
+    <orderEntry type="library" exported="" name="javax.mail-1.6.2" level="project" />
+    <orderEntry type="library" exported="" name="hutool-all-4.3.1" level="project" />
+    <orderEntry type="library" exported="" name="lombok-1.18.20" level="project" />
+    <orderEntry type="library" exported="" name="mybatis" level="project" />
+    <orderEntry type="library" exported="" name="druid-1.2.6" level="project" />
+    <orderEntry type="library" exported="" name="shiro" level="project" />
+    <orderEntry type="library" exported="" name="jedis" level="project" />
+    <orderEntry type="library" name="QRCode" level="project" />
+    <orderEntry type="library" name="quartz-2.3.0" level="project" />
+  </component>
+</module>

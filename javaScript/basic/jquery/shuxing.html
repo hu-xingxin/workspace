@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="checkbox"  id="checkbox" game="LOL" checked="checked"> 选中的复选框
+		<br/>
+		<button onclick="isCheck()">点击</button>
+		<script src="jquery.min.js"></script>
+		<script>
+			function isCheck(){
+				var isCheck = $('#checkbox').prop('checked');
+				alert(isCheck)
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.mybatis.mapper.UserMapper">
+    
+    <resultMap id="SysUserResult" type="com.spring.mybatis.domain.SysUser">
+        <id property="userId" column="user_id"></id>
+        <result property="deptId" column="dept_id"></result>
+        <result property="loginName" column="login_name"></result>
+        <result property="userName" column="user_name"></result>
+        <result property="userType" column="user_type"></result>
+        <result property="email" column="email"></result>
+        <result property="avatar" column="avatar"></result>
+        <result property="lawNum" column="law_num"></result>
+        <result property="phonenumber" column="phonenumber"></result>
+        <result property="sex" column="sex"></result>
+        <result property="password" column="password"></result>
+        <result property="salt" column="salt"></result>
+        <result property="status" column="status"></result>
+        <result property="delFlag" column="del_flag"></result>
+        <result property="loginIp" column="login_ip"></result>
+        <result property="loginDate" column="login_date"></result>
+    </resultMap>
+
+    <select id="queryUserById" parameterType="java.lang.Integer" resultMap="SysUserResult">
+        select * from sys_user  where user_id = #{userId}
+    </select>
+
+    <select id="queryUserList" parameterType="com.spring.mybatis.domain.SysUser" resultMap="SysUserResult">
+        select * from sys_user
+        <where>
+            <if test="loginName!=null and loginName!=''">
+                and login_name like concat('%',#{loginName},'%')
+            </if>
+            <if test="userName!=null and userName!=''">
+                and user_name like concat('%',#{userName},'%')
+            </if>
+        </where>
+    </select>
+
+    <select id="queryUserByListIds" parameterType="list" resultMap="SysUserResult">
+        select * from sys_user
+        <where>
+        user_id in
+            <foreach item="item" collection="list" separator="," open="(" close=")" index="">
+                #{item.userId}
+            </foreach>
+        </where>
+    </select>
+
+    <select id="queryUserByArrayIds" resultMap="SysUserResult">
+        select * from sys_user
+        <where>
+            user_id in
+            <foreach item="item" collection="array" separator="," open="(" close=")" index="index">
+                #{item}
+            </foreach>
+        </where>
+    </select>
+
+    <select id="queryUserByMapIds" resultMap="SysUserResult">
+        select * from sys_user
+        <where>
+            user_id in
+            <foreach item="item" collection="ids" separator="," open="(" close=")" index="index">
+                #{item}
+            </foreach>
+        </where>
+    </select>
+
+    <insert id="insertUser" parameterType="com.spring.mybatis.domain.SysUser">
+        insert into sys_user( user_id, dept_id, login_name, user_name, user_type, email, avatar, law_num, phonenumber, sex,
+                password,salt, status, del_flag, login_ip, login_date)
+       			values(#{userId},#{deptId},#{loginName},#{userName},#{userType},#{email},#{avatar},#{lawNum},#{phonenumber},#{sex},
+       			#{password},#{salt},#{status},#{delFlag},#{loginIp},#{loginDate})
+    </insert>
+
+    <update id="updateUser" parameterType="com.spring.mybatis.domain.SysUser">
+        update sys_user
+        <set>
+            <if test="loginName!=null and loginName!=''">
+                login_name = #{loginName}
+            </if>
+            <if test="userName!=null and userName!=''">
+                user_name = #{userName}
+            </if>
+        </set>
+        where user_id = #{userId}
+    </update>
+
+    <delete id="deleteUserById" parameterType="java.lang.Integer">
+        delete from sys_user where user_id = #{userId}
+    </delete>
+
+    <select id="queryPageCount" resultType="Integer">
+        select count(*) from sys_user
+    </select>
+
+
+</mapper>

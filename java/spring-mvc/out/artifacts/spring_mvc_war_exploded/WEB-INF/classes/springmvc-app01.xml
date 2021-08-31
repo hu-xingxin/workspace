@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+        <!-- 1.	声明UserController 
+        name  其它就是页面请求过来的url
+        -->
+        <bean id="login" name="/login" class="com.springmvc.app01.LoginController"></bean>
+        <bean id="order" name="/order" class="com.springmvc.app01.OrderController"></bean>
+
+        <!-- 2，配置 控制器映射器
+      	有两个处理器映射器
+	1:org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping把bean的名字做为url进行查找，也就是handler必须配置name属性
+	2:org.springframework.web.servlet.handler.SimpleUrlHandlerMapping  里面可以配置属性
+         -->
+        <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"></bean>
+        <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+            <property name="mappings">
+                <props>
+                    <!-- 这里面的key就是指页的url  值就是controller 的id -->
+                    <prop key="/login1">login</prop>
+                    <prop key="/login2">login</prop>
+                    <prop key="/order1">order</prop>
+                </props>
+            </property>
+        </bean>
+        <!-- 3，配置 控制器适配器
+        	有两个处理器适配器
+	1:org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter写的controller要实现Controller的接口
+	2:org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter 写controler要实现HttpRequestHandler接口
+        -->
+        <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"></bean>
+        <bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"></bean>
+        
+        <!-- 4，配置 视图解析器-->
+        <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+       		 <!-- 配置前缀 -->
+        	<!-- <property name="prefix" value="/WEB-INF/jsp/"></property> -->
+        	 <!-- 配置后缀 -->
+        	<!-- <property name="suffix" value=".jsp"></property> -->
+        </bean>
+        
+        
+</beans>
